@@ -395,7 +395,10 @@ function rebuildPosts(){
     if(debug) console.log("Struktura hotova");
 }
 function detectSpam(post){
-    if (post.icon.substr(-11) == "default.gif" && post.to == "all" && ((post.text.indexOf("http://", post.text.indexOf("http://")+1) > -1) || (post.text.indexOf("href", post.text.indexOf("href")+1) > -1) || (post.text.indexOf("diet") > -1 || post.text.indexOf("pill") > -1 || post.text.indexOf("penis") > -1 || post.text.indexOf("visit") > -1 || post.text.indexOf("buy") > -1 || post.text.indexOf("virus") > -1 ||post.text.indexOf("watch") > -1))){
+    if (
+        (post.icon.substr(-11) == "default.gif" && post.to == "all" && ((post.text.indexOf("http://", post.text.indexOf("http://")+1) > -1) || (post.text.indexOf("href", post.text.indexOf("href")+1) > -1) || (post.text.indexOf("diet") > -1 || post.text.indexOf("pill") > -1 || post.text.indexOf("penis") > -1 || post.text.indexOf("visit") > -1 || post.text.indexOf("buy") > -1 || post.text.indexOf("virus") > -1 ||post.text.indexOf("watch") > -1))) ||
+        (parseInt(post.icon.substr(-14, 10)) >= 1417972262) || post.icon.substr(-11) == "default.gif"
+    ){
         return true;
     }else{
         return false;
