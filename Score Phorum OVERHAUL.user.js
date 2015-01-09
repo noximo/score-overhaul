@@ -399,7 +399,9 @@ function appendHidden(hideMore, containerDiv) {
 function detectSpam(post) {
 //post.icon.substr(-11) === "default.gif" && post.to === "all" && ((post.text.indexOf("http://", post.text.indexOf("http://") + 1) > -1) || (post.text.indexOf("href", post.text.indexOf("href") + 1) > -1) || (post.text.indexOf("diet") > -1 || post.text.indexOf("pill") > -1 || post.text.indexOf("penis") > -1 || post.text.indexOf("visit") > -1 || post.text.indexOf("buy") > -1 || post.text.indexOf("virus") > -1 || post.text.indexOf("watch") > -1))) {
     if (parseInt(post.icon.substr(-14, 10)) >= 1417972262 || post.icon.substr(-11) === "default.gif") {
+         if (post) {
         spammers.push(post.from);
+    }
         return true;
     } else {
         return false;
@@ -408,10 +410,14 @@ function detectSpam(post) {
 
 function shouldBeHidden(post, who) {
     function isFrom(element, index, array) {
-        return post.from.toLowerCase() !== element.toLowerCase();
+        if (post) {
+            return post.from.toLowerCase() !== element.toLowerCase();
+        }
     }
     function isTo(element, index, array) {
-        return post.to.toLowerCase() !== element.toLowerCase();
+        if (post) {
+            return post.to.toLowerCase() !== element.toLowerCase();
+        }
     }
 
     var blockedUsers = getBlockedUsers();
