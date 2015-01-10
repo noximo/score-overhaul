@@ -72,6 +72,7 @@ function loadPosts() {
     for (i = 0; i < posts.length; i++) {
         post = new postStruct();
         currentPost = posts[i];
+        post.linkDelete = "";
         post.text = currentPost.innerHTML;
         post.link = currentPost.previousElementSibling.firstElementChild.href;
         post.icon = currentPost.previousElementSibling.firstElementChild.firstElementChild.src;
@@ -242,7 +243,7 @@ function rebuildPosts() {
                     infoLineFrom.innerHTML = 'od: <strong class="me_post">' + post.from + '</strong>';
                 }
 
-                if (!post.linkDelete === "") {
+                if (!(post.linkDelete === "")) {
                     infoLineFrom.innerHTML += '- <a class="info_line_delete" href="' + post.linkDelete + '">smazat</a>';
                 }
                 infoLine.appendChild(infoLineFrom);
