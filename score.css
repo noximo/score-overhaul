@@ -1,0 +1,108 @@
+body{
+    background: #94ada5;
+    color: black;
+}
+a {
+    color: #1200FF;
+    text-decoration: none;
+}
+room-list a, .top-menu a{
+    color: black;
+    text-decoration: none;
+}
+.delete-link a{
+    color: grey;
+    text-decoration: none;
+}
+.message{
+    color: black;
+}
+.message.received .recipient, .message.sent .author {
+    color: #333;
+}
+.message .jump-to-new{
+    box-shadow: rgb(51, 51, 51) 0px 0px 1px;
+    color: gray;
+}
+.recipient, .author{
+    font-weight: bold;
+}
+.message .avatar{
+    top:0;
+}
+.message:not(.reply) .text {
+    min-height: 50px;
+}
+.message .meta {
+    border: 0;
+    box-shadow: rgb(51, 51, 51) 0px 0px 1px;
+    color: gray;
+    margin-left: 3px;
+}
+@media (max-width: 640px) {
+    .message .header{
+        margin-left:40px;
+    }
+    .message .text{
+        min-height: 30px;
+    }
+}
+@media (min-width: 640px) {
+    #content {
+        width: 640px;
+        min-width: 50em;
+    }
+    .message{
+        font-size:120%;
+    }
+    .message .text{
+        min-height: 35px;
+        margin: 0.2em 0.2em 0.5em 45px;
+    }
+    .message .flags {
+        display: none;
+    }
+}
+
+.text{
+    font-family: Helvetica;
+}
+.room-list {
+    width: 360px;
+    margin: 0 auto;
+}
+
+.room-list a {
+    font-weight: normal;
+    color:black;
+    text-decoration:none;
+}
+.room-list .unread .post-count{
+    font-weight: normal;
+}
+.really-unread td, .really-unread td a, .really-unread .post-count{
+    font-weight:bold !important;
+    color: black;
+}
+
+.room-list .last-message-time {
+    display: none !important;
+}
+.room-list tr td:first-child {
+    display: none !important;
+}
+body .top-menu .inbox-new-messages.new {
+    display:inline-block;
+    padding: 2px 4px;
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    margin: 0 2px;
+}
+.never-read{
+    font-size: 0.8em;
+    color: gray !important
+}
+.never-read a{
+    color: gray;
+}
