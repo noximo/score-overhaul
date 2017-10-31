@@ -77,7 +77,7 @@ $(document).ready(function () {
         row.removeClass();
         row.addClass('last-visited');
 
-        row.find(".last-message-time").text("| " + new Date().toISOString().slice(11, 19) );
+        row.find(".last-message-time").text("| " + new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1") );
 
         var item = row.prop('outerHTML');
         visited.unshift(item);
