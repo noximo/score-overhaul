@@ -43,14 +43,24 @@ room-list a, .top-menu a{
     .message .header{
         margin-left:40px;
     }
+    room-list a{
+        padding: 15px;
+    }
     .message .text{
         min-height: 30px;
+    }
+    .message .jump-to-new {
+        height: 30px;
+        line-height: 30px;
     }
 }
 @media (min-width: 640px) {
     #content {
         width: 640px;
         min-width: 50em;
+    }
+    room-list a{
+        padding: 15px;
     }
     .message{
         font-size:120%;
@@ -102,6 +112,14 @@ body .top-menu .inbox-new-messages.new {
 .never-read{
     font-size: 0.8em;
     color: gray !important
+}
+.last-visited{
+    font-size: 0.8em;
+    color: black !important;
+}
+.last-visited .last-message-time {
+    display: inline !important;
+    color: black;
 }
 .never-read a{
     color: gray;
