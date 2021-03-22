@@ -105,4 +105,15 @@ $(document).ready(function () {
     }
 });
 
+//Embed tweetů
+$(document).ready(function () {
+    $('a[href*="twitter.com"]')
+        .each(function () {
+            this.href = this.href.replace(/mobile\.twitter\.com/, "twitter.com");
+        })
+        .wrap('<blockquote class="twitter-tweet"></blockquote>');
+
+    $('body').append('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+});
+
 
