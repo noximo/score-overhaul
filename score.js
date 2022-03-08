@@ -110,21 +110,39 @@ $(document).ready(function () {
     $('a[href*="twitter.com"]')
         .each(function () {
             this.href = this.href.replace(/mobile\.twitter\.com/, "twitter.com");
+            this.href = this.href.replace(/m\.twitter\.com/, "twitter.com");
         })
         .wrap('<blockquote class="twitter-tweet" data-dnt="true"></blockquote>');
 
-    $('a[href*="imgur.com"]')
+    // $('a[href*="imgur.com"]')
+    //     .each(function () {
+    //         let url = new URL(this.href);
+    //         let split = url.pathname.split('/');
+    //         let id = split[split.length - 1];
+    //
+    //         $(this).wrap('<blockquote class="imgur-embed-pub" lang="en" data-id="a/' + id + '" ></blockquote>');
+    //     });
+
+    $('a[href*="youtube.com"]')
+        .each(function () {
+            let params = (new URL(this.href)).searchParams;
+            let id = params.get('v');
+
+            $(this).replaceWith('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+        });
+
+    $('a[href*="youtu.be"]')
         .each(function () {
             let url = new URL(this.href);
             let split = url.pathname.split('/');
             let id = split[split.length - 1];
 
-            $(this).wrap('<blockquote class="imgur-embed-pub" lang="en" data-id="a/' + id + '" ></blockquote>');
+            $(this).replaceWith('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
         });
 
-    $('body').append('' +
-        '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> ' +
-        '<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
+    let body = $('body');
+    body.append('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> ');
+    // body.append('<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
 
 });
 
