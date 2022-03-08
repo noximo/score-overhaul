@@ -113,8 +113,19 @@ $(document).ready(function () {
         })
         .wrap('<blockquote class="twitter-tweet" data-dnt="true"></blockquote>');
 
+    $('a[href*="imgur.com"]')
+        .each(function () {
+            let url = new URL(this.href);
+            let split = url.pathname.split('/');
+            let id = split[split.length - 1];
 
-    $('body').append('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
+            $(this).wrap('<blockquote class="imgur-embed-pub" lang="en" data-id="a/' + id + '" ></blockquote>');
+        });
+
+    $('body').append('' +
+        '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> ' +
+        '<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
+
 });
 
 
