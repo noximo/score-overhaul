@@ -111,7 +111,8 @@ $(document).ready(function () {
         .each(function () {
             this.href = this.href.replace(/mobile\.twitter\.com/, "twitter.com");
         })
-        .wrap('<blockquote class="twitter-tweet"></blockquote>');
+        .wrap('<blockquote class="twitter-tweet" data-dnt="true"></blockquote>');
+
 
     $('body').append('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>');
 });
