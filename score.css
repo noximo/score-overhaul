@@ -190,11 +190,11 @@ body .top-menu .inbox-new-messages.new {
 
 /*Embed médií*/
 .twitter-embed-outer {
-    min-height: 300px;
 }
 
 .twitter-embed {
-    height: 300px;
+    height: 150px;
+    min-height: 150px;
 }
 
 .twitter-tweet {
