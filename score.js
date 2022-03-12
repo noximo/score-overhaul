@@ -105,14 +105,14 @@ $(document).ready(function () {
     }
 });
 
-//Embed tweetů
+//Embed médií
 $(document).ready(function () {
-    $('a[href*="twitter.com"]')
-        .each(function () {
-            this.href = this.href.replace(/mobile\.twitter\.com/, "twitter.com");
-            this.href = this.href.replace(/m\.twitter\.com/, "twitter.com");
-        })
-        .wrap('<blockquote class="twitter-tweet" data-dnt="true"></blockquote>');
+    const checkIfIsMobile = false //Změň false na true pokud chceš vypnout embedování na mobilu
+    const isMobile = Math.min(window.screen.width, window.screen.height) < 768 || navigator.userAgent.indexOf("Mobi") > -1;
+    if (checkIfIsMobile && isMobile) {
+        return;
+    }
+    let body = $('body');
 
     // $('a[href*="imgur.com"]')
     //     .each(function () {
@@ -122,13 +122,14 @@ $(document).ready(function () {
     //
     //         $(this).wrap('<blockquote class="imgur-embed-pub" lang="en" data-id="a/' + id + '" ></blockquote>');
     //     });
+    // body.append('<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
 
     $('a[href*="youtube.com"]')
         .each(function () {
             let params = (new URL(this.href)).searchParams;
             let id = params.get('v');
 
-            $(this).replaceWith('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+            $(this).replaceWith('<iframe width="224" height="126" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
         });
 
     $('a[href*="youtu.be"]')
@@ -137,12 +138,40 @@ $(document).ready(function () {
             let split = url.pathname.split('/');
             let id = split[split.length - 1];
 
-            $(this).replaceWith('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+            $(this).replaceWith('<iframe width="224" height="126" src="https://www.youtube.com/embed/' + id + '" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
         });
 
-    let body = $('body');
+
+    $('a[href*="twitter.com"]')
+        .each(function (index) {
+            this.href = this.href.replace(/mobile\.twitter\.com/, "twitter.com");
+            this.href = this.href.replace(/m\.twitter\.com/, "twitter.com");
+            $(this).wrap('<div  class="twitter-embed-outer"><div class="twitter-embed" id="twitter-embed-' + index + '" style=""><blockquote  class="twitter-tweet" data-dnt="true"></blockquote></div></div>');
+        });
+
+    let sizeCache = [];
+    interval = setInterval(function () {
+        $('.twitter-embed').each(function () {
+            let previousHeight = sizeCache[this.id] ?? 0;
+            this.style.height = 'auto';
+            let currentHeight = parseInt(this.getBoundingClientRect().height);
+
+            console.log(previousHeight, currentHeight);
+            if (previousHeight < currentHeight) {
+                let adjustedHeight = parseInt(currentHeight * 0.6);
+                this.style.height = adjustedHeight + 'px';
+                sizeCache[this.id] = adjustedHeight;
+
+                $(this).parent().height(adjustedHeight);
+            }
+        });
+    }, 1000);
+
+    setTimeout(function () {
+        clearInterval(interval)
+    }, 90 * 1000);
+
     body.append('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> ');
-    // body.append('<script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>');
 
 });
 

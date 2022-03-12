@@ -188,3 +188,16 @@ body .top-menu .inbox-new-messages.new {
     margin-bottom: 15px;
 }
 
+/*Embed médií*/
+.twitter-embed-outer {
+    min-height: 300px;
+}
+
+.twitter-embed- {
+    height: 300px;
+}
+
+.twitter-tweet {
+    transform: scale(0.6);
+    transform-origin: 0 0;
+}
