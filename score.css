@@ -1,6 +1,8 @@
 body {
     background: #94ada5;
     color: black;
+        font-family: Helvetica, Verdana, sans-serif;
+
 }
 
 a {
@@ -86,7 +88,7 @@ a {
 }
 
 .text {
-    font-family: Helvetica, serif;
+    font-family: Helvetica, Verdana, sans-serif;
 }
 
 .room-list {
@@ -190,14 +192,35 @@ body .top-menu .inbox-new-messages.new {
 
 /*Embed médií*/
 .twitter-embed-outer {
+   
 }
 
 .twitter-embed {
-    height: 150px;
-    min-height: 150px;
+    height: 150px; 
+min-height: 150px;
 }
 
 .twitter-tweet {
     transform: scale(0.6);
     transform-origin: 0 0;
 }
+#home{
+width: 2em;
+    height: 2em;
+    position: fixed;
+    bottom: -0.8em;
+    left: -0.8em;
+    color: black;
+    text-align: center;
+    font-size: 2em;
+    background: rgb(114 145 135);
+    /* line-height: 1em; */
+    padding-left: 0.6em;
+    border-radius: 54px;
+    padding-top: 0.1em;
+}
+
+#home a {color:black;}
+#home a:visited {color:black;}
+
+img{max-width: 550px;}
