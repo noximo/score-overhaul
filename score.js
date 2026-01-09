@@ -135,9 +135,11 @@ function initMediaEmbeds() {
   document.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"]').forEach((link) => {
     const url = new URL(link.href);
     let id;
+    let isShort = false;
 
     if (link.href.includes('/shorts/')) {
       id = url.pathname.split('/shorts/')[1]?.split('?')[0];
+      isShort = true;
     } else if (link.href.includes('youtube.com')) {
       id = url.searchParams.get('v');
     } else if (link.href.includes('youtu.be')) {
@@ -147,8 +149,8 @@ function initMediaEmbeds() {
     if (id) {
       const si = url.searchParams.get('si');
       const iframe = document.createElement('iframe');
-      iframe.width = '280';
-      iframe.height = '158';
+      iframe.width = isShort ? '280' : '280';
+      iframe.height = isShort ? '498' : '158';
       iframe.src = si ? `https://www.youtube.com/embed/${id}?si=${si}` : `https://www.youtube.com/embed/${id}`;
       iframe.title = 'YouTube video player';
       iframe.frameBorder = '0';
