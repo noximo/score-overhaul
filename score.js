@@ -149,8 +149,8 @@ function initMediaEmbeds() {
     if (id) {
       const si = url.searchParams.get('si');
       const iframe = document.createElement('iframe');
-      iframe.width = isShort ? '280' : '280';
-      iframe.height = isShort ? '498' : '158';
+      iframe.width = isShort ? '140' : '280';
+      iframe.height = isShort ? '249' : '158';
       iframe.src = si ? `https://www.youtube.com/embed/${id}?si=${si}` : `https://www.youtube.com/embed/${id}`;
       iframe.title = 'YouTube video player';
       iframe.frameBorder = '0';
