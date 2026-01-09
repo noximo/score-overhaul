@@ -89,8 +89,7 @@ function initRecentlyVisitedRooms() {
 }
 
 function initHideUsers() {
-  const hideUsers = ['ms.garrett'];
-
+ const hideUsers = ['ms.garrett'];
   const hideMessage = (message) => {
     if (message.classList.contains('messageHidden')) return;
     message.classList.add('messageHidden');
@@ -133,47 +132,32 @@ function initMediaEmbeds() {
   const isMobile = Math.min(window.screen.width, window.screen.height) < 768 || /Mobi/.test(navigator.userAgent);
   if (isMobile) return;
 
-  document.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"], a[href*="x.com"], a[href*="twitter.com"]').forEach((link, index) => {
-    const href = link.href;
+  document.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"]').forEach((link) => {
+    const url = new URL(link.href);
+    let id;
 
-    if (href.includes('youtube.com')) {
-      const url = new URL(href);
-      const id = url.searchParams.get('v');
-      if (id) {
-        link.replaceWith(`<iframe width="224" height="126" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-      }
-    } else if (href.includes('youtu.be')) {
-      const url = new URL(href);
-      const id = url.pathname.split('/').pop()?.split('?')[0];
-      if (id) {
-        link.replaceWith(`<iframe width="224" height="126" src="https://www.youtube.com/embed/${id}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-      }
-    } else if (href.includes('x.com') || href.includes('twitter.com')) {
-      let cleanHref = href.replace(/mobile\.twitter\.com|m\.twitter\.com/, 'twitter.com');
-      link.href = cleanHref;
-      link.insertAdjacentHTML('beforebegin', `<div class="twitter-embed-outer"><div class="twitter-embed" id="twitter-embed-${index}"></div></div>`);
-      link.remove();
+    if (link.href.includes('/shorts/')) {
+      id = url.pathname.split('/shorts/')[1]?.split('?')[0];
+    } else if (link.href.includes('youtube.com')) {
+      id = url.searchParams.get('v');
+    } else if (link.href.includes('youtu.be')) {
+      id = url.pathname.split('/').pop()?.split('?')[0];
+    }
+
+    if (id) {
+      const si = url.searchParams.get('si');
+      const iframe = document.createElement('iframe');
+      iframe.width = '280';
+      iframe.height = '158';
+      iframe.src = si ? `https://www.youtube.com/embed/${id}?si=${si}` : `https://www.youtube.com/embed/${id}`;
+      iframe.title = 'YouTube video player';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      link.replaceWith(iframe);
     }
   });
-
-  const sizeCache = {};
-  const interval = setInterval(() => {
-    document.querySelectorAll('.twitter-embed').forEach(embed => {
-      const previousHeight = sizeCache[embed.id] || 0;
-      embed.style.height = 'auto';
-      const currentHeight = parseInt(embed.getBoundingClientRect().height);
-
-      if (previousHeight < currentHeight) {
-        const adjustedHeight = Math.floor(currentHeight * 0.6);
-        embed.style.height = adjustedHeight + 'px';
-        sizeCache[embed.id] = adjustedHeight;
-        embed.parentElement.style.height = adjustedHeight + 'px';
-      }
-    });
-  }, 1000);
-
-  setTimeout(() => clearInterval(interval), 90000);
-  document.body.insertAdjacentHTML('beforeend', '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>');
 }
 
 function initFormRestructure() {
