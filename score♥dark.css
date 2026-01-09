@@ -250,3 +250,22 @@ padding: 0.5em;
 .room-list tr:hover a {
 color: black;
 }
+
+.message.new-message .meta {
+    background-color: #e2e2e2;
+    color: #2f2f2d;
+}
+
+.message.new-message .author{
+    color: #2f2f2d;
+}
+
+.message .jump-to-new {
+    /* box-shadow: rgb(47 47 45) 0 0 1px; */
+    background: #808080;
+    color: #2f2f2d;
+}
+
+.message .jump-to-new.in-thread {
+    background-color: #e2e2e2;
+}
