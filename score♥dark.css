@@ -1,0 +1,252 @@
+body {
+    background: #262624;
+    color: #c2c0b6;
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+a {
+    color: #d97757;
+    text-decoration: none;
+}
+
+.room-list a, .top-menu a {
+    color: #c2c0b6;
+    text-decoration: none;
+}
+
+.delete-link a {
+    color: grey;
+    text-decoration: none;
+}
+
+.message {
+    color: #c2c0b6;
+}
+
+.message.received .recipient, .message.sent .author {
+    color: #e2e2e2;
+}
+
+.message .jump-to-new {
+    box-shadow: rgb(51, 51, 51) 0 0 1px;
+    color: gray;
+}
+
+.recipient, .author {
+    font-weight: bold;
+}
+
+.message .avatar {
+    top: 0;
+}
+
+.message:not(.reply) .text {
+    min-height: 50px;
+}
+
+.message .meta {
+    border: 0;
+    /* box-shadow: rgb(51, 51, 51) 0 0 1px; */
+    color: gray;
+    margin-left: 3px;
+    background: #2f2f2d;
+}
+
+@media (max-width: 640px) {
+    .message .header {
+        margin-left: 40px;
+    }
+
+    .message .text {
+        min-height: 30px;
+    }
+
+    .message .jump-to-new {
+        height: 30px;
+        line-height: 30px;
+    }
+}
+
+@media (min-width: 640px) {
+    #content {
+        width: 640px;
+        min-width: 50em;
+    }
+
+    .message {
+        font-size: 120%;
+    }
+
+    .message .text {
+        min-height: 35px;
+        margin: 0.2em 0.2em 0.5em 45px;
+    }
+
+    .message .flags {
+        display: none;
+    }
+}
+
+.text {
+    font-family: system-ui, -apple-system, sans-serifsans-serif;
+}
+
+.room-list {
+    width: 360px;
+    margin: 0 auto;
+}
+
+.room-list a {
+    font-weight: normal;
+    color: #c2c0b6;
+    text-decoration: none;
+}
+
+.room-list .unread .post-count {
+    font-weight: normal;
+}
+
+.really-unread td, .really-unread td a, .really-unread .post-count {
+    font-weight: bold !important;
+    color: #d97757;
+}
+
+.room-list .last-message-time {
+    display: none !important;
+}
+
+.room-list tr td:first-child {
+    display: none !important;
+}
+
+body .top-menu .inbox-new-messages.new {
+    display: inline-block;
+    padding: 2px 4px;
+    background-color: red;
+    color: white;
+    border-radius: 3px;
+    margin: 0 2px;
+}
+
+.never-read {
+    font-size: 0.8em;
+    color: gray !important
+}
+
+.last-visited {
+    font-size: 0.8em;
+    color: black !important;
+}
+
+.last-visited .last-message-time {
+    display: inline !important;
+    color: black;
+}
+
+.never-read a {
+    color: gray;
+}
+
+/* Skrývání uživatelů */
+.toggleMessage {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    background-color: #c8c4a0;
+    box-shadow: #333 0 0 3px;
+    font-family: Helvetica, sans-serif;
+    font-size: 10px;
+    height: 14px;
+    line-height: 14px;
+    width: 40px;
+    margin: -15px 0 0;
+}
+
+.toggleOffset {
+    margin-bottom: 5px;
+}
+
+.messageOffset {
+    margin-bottom: 5px;
+}
+
+.messageHidden {
+    margin-bottom: 5px;
+    opacity: 0.25;
+}
+
+.messageHidden:hover {
+    opacity: 0.75;
+}
+
+/* Nemáš-li změněný vzhled, zbytek řádků smaž */
+.toggleMessage {
+    box-shadow: rgb(51 51 51) 0 0 1px;
+    color: gray;
+    margin: 0 0 0;
+}
+
+.messageOffset {
+    margin-bottom: 15px;
+}
+
+/*Embed médií*/
+.twitter-embed-outer {
+   
+}
+
+.twitter-embed {
+    height: 150px; 
+min-height: 150px;
+}
+
+.twitter-tweet {
+    transform: scale(0.6);
+    transform-origin: 0 0;
+}
+#home{
+width: 2em;
+    height: 2em;
+    position: fixed;
+    bottom: -0.8em;
+    left: -0.8em;
+    color: black;
+    text-align: center;
+    font-size: 2em;
+    background: rgb(114 145 135);
+    /* line-height: 1em; */
+    padding-left: 0.6em;
+    border-radius: 54px;
+    padding-top: 0.1em;
+}
+
+#home a {color:black;}
+#home a:visited {color:black;}
+
+img{max-width: 550px;}
+
+.message:not(.reply):not(.deleted):not(.new-message) .meta {
+    background-color: rgb(47 47 45);
+}
+
+.room-list tr:nth-child(4n) {
+    background-color: inherit;
+}
+
+.room-list tr:hover {
+    background-color: #c2c0b6;
+    color: black;
+}
+
+textarea,input,input:not([type=submit]):not([type=file]){
+    background: #2f2f2d;
+    color: #c2c0b6;
+}
+button, [type='button'], [type='reset'], [type='submit']{
+border:none;
+padding: 0.5em;
+}
+
+.room-list tr:hover a {
+color: black;
+}
