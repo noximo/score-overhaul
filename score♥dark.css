@@ -89,6 +89,7 @@ a {
 
 .text {
     font-family: system-ui, -apple-system, sans-serifsans-serif;
+    color: rgb(250, 249, 245);
 }
 
 .room-list {
